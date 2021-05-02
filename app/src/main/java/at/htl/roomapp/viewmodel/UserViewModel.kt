@@ -1,10 +1,12 @@
-package at.htl.roomapp.data
+package at.htl.roomapp.viewmodel
 
 import android.app.Application
-import androidx.annotation.NonNull
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import at.htl.roomapp.data.UserDatabase
+import at.htl.roomapp.model.User
+import at.htl.roomapp.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,6 +23,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO){
             repository.addUser(user)
+        }
+    }
+
+    fun updateUser(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUser(user)
         }
     }
 }
